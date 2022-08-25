@@ -7,8 +7,8 @@ services:
     image: nextcloud
     restart: always
     ports:
-      {% for port in ports -%}
-      - "{{ port }}:{{ port }}"
+      {% for port in network.private.ports -%}
+      - "{{ port.internal | default('8080') }}:{{ port.external | default('8080') }}/{{ port.protocol | default('tcp') }}"
       {%- endfor %}
     volumes:
       - nextcloud:/var/www/html

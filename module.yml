@@ -1,7 +1,6 @@
 ---
 version: 1
-about:
-  version: 1.0 # Based on Git tags
+module:
   description: NextCloud - A safe home for all your data. Access & share your files, calendars, contacts, mail & more from any device, on your terms.
   authors:
     - Jean-Nicolas Boulay (JN) <https://jean-nicolas.name>
@@ -10,6 +9,13 @@ about:
     - file
     - host
     - storage
-  requires:
-    - ansible
-    - jinja2
+  configuration:
+    network:
+      internal:
+        ports:
+          - protocol: tcp
+            internal: 8080
+            external: 8080
+      public:
+        locations:
+          - location: /nextcloud
