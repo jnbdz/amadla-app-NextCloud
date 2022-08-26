@@ -11,11 +11,11 @@ module:
     - storage
   configuration:
     network:
-      internal:
-        ports:
-          - protocol: tcp
-            internal: 8080
-            external: 8080
-      public:
-        locations:
+      private:
+        entries:
           - location: /nextcloud
+            ports:
+              - internal: 8080
+                external: 80
+              - internal: 8080
+                external: 443
