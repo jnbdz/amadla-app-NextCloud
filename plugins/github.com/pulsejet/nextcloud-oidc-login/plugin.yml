@@ -1,0 +1,8 @@
+---
+version: 1
+plugin:
+  repository: https://github.com/pulsejet/nextcloud-oidc-login
+  tags:
+    - openid
+    - sso
+    - authentication
