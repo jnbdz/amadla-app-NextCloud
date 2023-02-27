@@ -1,14 +1,29 @@
 - name: Configure user_saml app
   hosts: your_database_host
   vars:
+    database_type: "{{ ansible_user_saml_database_type | default('mysql') }}"
     database_name: your_database_name
     database_user: your_database_user
-    database_password: your_database_password
+    database_password: "{{ vault_database_password }}"
   tasks:
     - name: Execute SQL script
-      mysql_db:
-        name: "{{ database_name }}"
-        login_user: "{{ database_user }}"
-        login_password: "{{ database_password }}"
-        state: import
-        target: "{{ playbook_dir }}/saml-config.sql"
+      become: yes
+      become_user: your_database_user
+      environment:
+        MYSQL_PWD: "{{ database_password }}"
+        PGPASSWORD: "{{ database_password }}"
+    - name: Execute SQL script
+      become: yes
+      become_user: "{{ database_user }}"
+      shell: |
+        {% if database_type == 'mysql' %}
+          cat {{ playbook_dir }}/saml-config.sql | mysql {{ database_name }} -u {{ database_user }}
+        {% elif database_type == 'mariadb' %}
+          cat {{ playbook_dir }}/saml-config.sql | mariadb {{ database_name }} -u {{ database_user }}
+        {% elif database_type == 'postgresql' %}
+          cat {{ playbook_dir }}/saml-config.sql | psql {{ database_name }} -U {{ database_user }} -W {{ database_password }}
+        {% elif database_type == 'sqlite' %}
+          sqlite3 {{ database_name }} < {{ playbook_dir }}/saml-config.sql
+        {% endif %}
+  vars_files:
+    - /path/to/vault_file.yml
