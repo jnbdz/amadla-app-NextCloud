@@ -1,0 +1,14 @@
+- name: Configure user_saml app
+  hosts: your_database_host
+  vars:
+    database_name: your_database_name
+    database_user: your_database_user
+    database_password: your_database_password
+  tasks:
+    - name: Execute SQL script
+      mysql_db:
+        name: "{{ database_name }}"
+        login_user: "{{ database_user }}"
+        login_password: "{{ database_password }}"
+        state: import
+        target: "{{ playbook_dir }}/saml-config.sql"

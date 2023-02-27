@@ -1,0 +1,12 @@
+INSERT INTO `oc_appconfig` (`appid`, `configkey`, `configvalue`) VALUES ('user_saml', 'enabled', 'yes');
+INSERT INTO `oc_appconfig` (`appid`, `configkey`, `configvalue`) VALUES ('user_saml', 'only_saml', 'yes');
+INSERT INTO `oc_appconfig` (`appid`, `configkey`, `configvalue`) VALUES ('user_saml', 'saml_login_button_label', 'SAML Login');
+INSERT INTO `oc_appconfig` (`appid`, `configkey`, `configvalue`) VALUES ('user_saml', 'saml_auto_provision', 'yes');
+INSERT INTO `oc_appconfig` (`appid`, `configkey`, `configvalue`) VALUES ('user_saml', 'saml:idp:0:entityid', 'https://idp.example.com/metadata');
+INSERT INTO `oc_appconfig` (`appid`, `configkey`, `configvalue`) VALUES ('user_saml', 'saml:idp:0:nameidattr', 'uid');
+INSERT INTO `oc_appconfig` (`appid`, `configkey`, `configvalue`) VALUES ('user_saml', 'saml:idp:0:metadata', 'https://idp.example.com/metadata');
+INSERT INTO `oc_appconfig` (`appid`, `configkey`, `configvalue`) VALUES ('user_saml', 'saml:idp:0:singleLogoutService.url', 'https://idp.example.com/logout');
+INSERT INTO `oc_appconfig` (`appid`, `configkey`, `configvalue`) VALUES ('user_saml', 'saml:idp:0:singleLogoutService.binding', 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect');
+INSERT INTO `oc_appconfig` (`appid`, `configkey`, `configvalue`) VALUES ('user_saml', 'saml:idp:0:assertion.encryption', 'false');
+INSERT INTO `oc_appconfig` (`appid`, `configkey`, `configvalue`) VALUES ('user_saml', 'saml:idp:0:signature.algorithm', 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256');
+INSERT INTO `oc_appconfig` (`appid`, `configkey`, `configvalue`) VALUES ('user_saml', 'saml:idp:0:authnrequestsigned', 'true');
