@@ -19,7 +19,7 @@
         {% if database_type == 'mysql' %}
           cat {{ playbook_dir }}/saml-config.sql | mysql {{ database_name }} -u {{ database_user }}
         {% elif database_type == 'mariadb' %}
-          cat {{ playbook_dir }}/saml-config.sql | mariadb {{ database_name }} -u {{ database_user }}
+          cat {{ playbook_dir }}/saml-config.sql | mysql {{ database_name }} -u {{ database_user }}
         {% elif database_type == 'postgresql' %}
           cat {{ playbook_dir }}/saml-config.sql | psql {{ database_name }} -U {{ database_user }} -W {{ database_password }}
         {% elif database_type == 'sqlite' %}

@@ -1,0 +1,8 @@
+---
+version: 1
+plugin:
+  repository: https://github.com/nextcloud/user_saml
+  tags:
+    - SAML
+    - sso
+    - authentication
